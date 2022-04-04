@@ -6,6 +6,7 @@ const assignRandomTeamsButton = document.getElementById("assignRandomTeamsInput"
 const numberOfTeamsNumber = document.getElementById("numberOfTeamsInput");
 const studentListTextarea = document.getElementById("studentListInput");
 const randomChoiceSpan = document.getElementById("randomChoice");
+const teamsParagraph = document.querySelector("#teamsParagraph");
 
 const debug = false;
 
@@ -39,7 +40,6 @@ function assignRandomTeams() {
   // Finally when N is greater than numberOfTeams it should reset N to 1
   let teams = [];
   const teamSize = Math.floor(studentList.length / numberOfTeams);
-  const leftover = studentList.length % teamSize;
   if (studentList.length >= numberOfTeams) {
     for (let i = 0; i < numberOfTeams; i++) {
       let team = [];
@@ -51,14 +51,24 @@ function assignRandomTeams() {
       teams.push(team);
     }
     let leftOverTeamNumber = 0;
+    let leftover = studentList.length;
     while (leftover > 0) {
       teams[leftOverTeamNumber].push(studentList[0]);
       studentList.splice(0, 1);
+      leftover--;
       leftOverTeamNumber++;
     }
-
-    console.log(teams);
-    return teams;
+    let outputString = "";
+    teams.forEach((team, teamNumber) => {
+      outputString += `Team ${teamNumber + 1}: <ul>`;
+      team.forEach((member) => {
+        outputString += `<li>${member} </li>`;
+      });
+      outputString += "</ul>";
+    });
+    teamsParagraph.innerHTML = outputString;
+  } else {
+    teamsParagraph.innerHTML = "There are not enough students to make this many teams!";
   }
 }
 
