@@ -7,6 +7,7 @@
     <title>Teacher Tools</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
 
   <body>
@@ -25,9 +26,11 @@
           cols="50"
           rows="20"
         ></textarea>
-        <input type="button" value="Save list" id="saveListInput" />
-        <input type="button" value="Load saved list" id="loadSavedListInput" />
-        <input type="button" value="Clear list" id="clearListInput" />
+        <div class="buttons">
+          <input type="button" value="Save list" id="saveListInput" />
+          <input type="button" value="Load saved list" id="loadSavedListInput" />
+          <input type="button" value="Clear list" id="clearListInput" />
+        </div>
       </div>
       <div id="tools">
         <h2>Tools</h2>
@@ -57,6 +60,5 @@
         </div>
       </div>
     </div>
-    <script src="script.js" onload="defer"></script>
   </body>
 </html>
