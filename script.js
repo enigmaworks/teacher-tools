@@ -20,6 +20,10 @@ saveListButton.addEventListener("click", saveList);
 loadSavedListButton.addEventListener("click", loadList);
 clearListButton.addEventListener("click", clearList);
 
+studentListTextarea.addEventListener("input", () => {
+  studentListTextarea.value = studentListTextarea.value.replace(",", "\n");
+});
+
 function generateStudentList() {
   let list = studentListTextarea.value.split(/\r\n|\r|\n/g);
   if (debug == true) {
