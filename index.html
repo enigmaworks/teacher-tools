@@ -1,64 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teacher Tools</title>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-  </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Teacher Tools</title>
+		<link rel="stylesheet" href="reset.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
 
-  <body>
-    <header>
-      <h1>Teacher Tools</h1>
-      <p>Caravel Academy</p>
-    </header>
-    <div id="interface">
-      <div id="studentList">
-        <h2>Enter student list</h2>
-        <label for="studentListInput">Student List Input</label>
-        <textarea
-          class="block"
-          name="Student List Input"
-          id="studentListInput"
-          cols="50"
-          rows="20"
-        ></textarea>
-        <div class="buttons">
-          <input type="button" value="Save list" id="saveListInput" />
-          <input type="button" value="Load saved list" id="loadSavedListInput" />
-          <input type="button" value="Clear list" id="clearListInput" />
-        </div>
-      </div>
-      <div id="tools">
-        <h2>Tools</h2>
-        <div class="tool">
-          <input
-            class="block"
-            type="button"
-            value="Choose Random Student"
-            id="chooseRandomStudentInput"
-          />
-          <p>Student: <span id="randomChoice"></span></p>
-        </div>
-        <div class="tool">
-          <label class="block" for="numberOfTeamsInput">Number of teams</label>
-          <input class="block" type="number" name="Number of teams" id="numberOfTeamsInput" />
-          <input
-            class="block"
-            type="button"
-            value="Assign random teams"
-            id="assignRandomTeamsInput"
-          />
-          <div>
-            <br />
-            <h3>Teams:</h3>
-            <p id="teamsParagraph"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+	<body>
+		<header>
+			<h1>Teacher Tools</h1>
+			<p>Caravel Academy</p>
+		</header>
+		<div id="interface">
+			<div id="studentList">
+				<h2>Enter student list</h2>
+				<label for="studentListInput">Student List Input</label>
+				<textarea
+					class="block"
+					name="Student List Input"
+					id="studentListInput"
+					cols="50"
+					rows="20"
+				></textarea>
+				<div class="buttons">
+					<input type="button" value="Save list" id="saveListInput" />
+					<input
+						type="button"
+						value="Load saved list"
+						id="loadSavedListInput"
+					/>
+					<input type="button" value="Clear list" id="clearListInput" />
+				</div>
+			</div>
+			<div id="tools">
+				<h2>Tools</h2>
+				<div class="tool">
+					<input
+						class="block"
+						type="button"
+						value="Choose Random Student"
+						id="chooseRandomStudentInput"
+					/>
+					<p>Student: <span id="randomChoice"></span></p>
+				</div>
+				<div class="tool">
+					<label class="block" for="numberOfTeamsInput">Number of teams</label>
+					<input
+						class="block"
+						type="number"
+						name="Number of teams"
+						id="numberOfTeamsInput"
+					/>
+					<input
+						class="block"
+						type="button"
+						value="Assign random teams"
+						id="assignRandomTeamsInput"
+					/>
+					<div>
+						<br />
+						<h3>Teams:</h3>
+						<p id="teamsParagraph"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
