@@ -2,7 +2,8 @@ const chooseRandomStudentButton = document.getElementById(
 	"chooseRandomStudentInput"
 );
 const saveListButton = document.getElementById("saveListInput");
-const loadSavedListButton = document.getElementById("loadSavedListInput");
+const saveListNameInput = document.getElementById("saveListNameInput");
+const savedButtonsContainer = document.getElementById("savedListsDiv");
 const clearListButton = document.getElementById("clearListInput");
 const assignRandomTeamsButton = document.getElementById(
 	"assignRandomTeamsInput"
@@ -11,6 +12,10 @@ const numberOfTeamsNumber = document.getElementById("numberOfTeamsInput");
 const studentListTextarea = document.getElementById("studentListInput");
 const randomChoiceSpan = document.getElementById("randomChoice");
 const teamsParagraph = document.querySelector("#teamsParagraph");
+
+const localStorageItemKey = "TeacherToolsSavedLists";
+let savedData = getSavedLists();
+createLoadButtons(savedData);
 
 /* ------------------------------ */
 /*         LIST ACTIONS   				*/
@@ -83,24 +88,76 @@ function assignRandomTeams() {
 	teamsParagraph.replaceChildren(output);
 }
 
-saveListButton.addEventListener("click", () => {
-	savedStudentList = studentListTextarea.value;
-});
+/* ------------------------------ */
+/*        SAVING / LOADING				*/
+/* ------------------------------ */
 
-loadSavedListButton.addEventListener("click", () => {
-	studentListTextarea.value = savedStudentList;
-});
+// format and save the values in student input list to local storage
+saveListButton.addEventListener("click", saveCurrentList);
+function saveCurrentList() {
+	const studentListArray = generateStudentListArray();
+	let listName = saveListNameInput.value;
 
-clearListButton.addEventListener("click", () => {
+	if (studentListArray.length < 2) {
+		console.log("list must have more than one entry");
+		return;
+	}
+
+	if (listName === "") {
+		const time = new Date();
+		listName = time.toDateString();
+	}
+
+	savedData[listName] = studentListArray;
+	localStorage.setItem(localStorageItemKey, JSON.stringify(savedData));
+
+	createLoadButtons(savedData);
+	saveListNameInput.value = "";
+}
+
+// clear the student list input and list name input
+clearListButton.addEventListener("click", clearCurrentList);
+function clearCurrentList() {
 	studentListTextarea.value = "";
-});
+	saveListNameInput.value = "";
+}
 
-studentListTextarea.addEventListener("input", () => {
+// replace commas with new lines on input
+studentListTextarea.addEventListener("input", addNewlines);
+function addNewlines() {
 	studentListTextarea.value = studentListTextarea.value.replace(",", "\n");
+}
 
 /* ------------------------------ */
 /*         HELPER FUNCTIONS				*/
 /* ------------------------------ */
+
+// acess and format any saved lists in local storage, return as a object
+function getSavedLists() {
+	let data = JSON.parse(localStorage.getItem(localStorageItemKey));
+	if (!data) data = {};
+	return data;
+}
+
+// generate buttons to load/delete any student lists passed in parameter
+function createLoadButtons(savedLists) {
+	const savedListNames = Object.keys(savedLists);
+	const savedListValues = Object.values(savedLists);
+	const fragment = document.createDocumentFragment();
+
+	for (let i = 0; i < savedListNames.length; i++) {
+		const newButtonElement = document.createElement("button");
+
+		newButtonElement.innerText = savedListNames[i];
+		newButtonElement.addEventListener("click", () => {
+			studentListTextarea.value = savedListValues[i].join("\n");
+		});
+
+		fragment.appendChild(newButtonElement);
+	}
+
+	savedButtonsContainer.replaceChildren(fragment);
+}
 
 // format the value in the student list input and retun it as an array
 function generateStudentListArray() {
