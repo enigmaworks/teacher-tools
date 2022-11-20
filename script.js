@@ -12,11 +12,13 @@ const studentListTextarea = document.getElementById("studentListInput");
 const randomChoiceSpan = document.getElementById("randomChoice");
 const teamsParagraph = document.querySelector("#teamsParagraph");
 
-let savedStudentList;
+/* ------------------------------ */
+/*         LIST ACTIONS   				*/
+/* ------------------------------ */
 
 chooseRandomStudentButton.addEventListener("click", chooseRandomStudent);
 function chooseRandomStudent() {
-	let studentList = generateStudentList();
+	let studentList = generateStudentListArray();
 	let randomInteger = generateRandomInteger(0, studentList.length - 1);
 	let choice = studentList[randomInteger];
 
@@ -28,7 +30,7 @@ function chooseRandomStudent() {
 assignRandomTeamsButton.addEventListener("click", assignRandomTeams);
 function assignRandomTeams() {
 	let numberOfTeams = numberOfTeamsNumber.value;
-	let studentList = generateStudentList();
+	let studentList = generateStudentListArray();
 	let teams = [];
 	const teamSize = Math.floor(studentList.length / numberOfTeams);
 
@@ -95,13 +97,16 @@ clearListButton.addEventListener("click", () => {
 
 studentListTextarea.addEventListener("input", () => {
 	studentListTextarea.value = studentListTextarea.value.replace(",", "\n");
-});
 
-// HELPER FUNCTIONS
-function generateStudentList() {
-	const text = studentListTextarea.value; //get the string value of the textarea content
-	const list = text.split(/\r\n|\r|\n/g); //split the string into an array of the values between new line characters
-	return list;
+/* ------------------------------ */
+/*         HELPER FUNCTIONS				*/
+/* ------------------------------ */
+
+// format the value in the student list input and retun it as an array
+function generateStudentListArray() {
+	const studentListInput = studentListTextarea.value;
+	const array = studentListInput.split(/\r\n|\r|\n/g); // split the string into an array of the values between new line characters
+	return array;
 }
 
 function generateRandomInteger(min, max) {
