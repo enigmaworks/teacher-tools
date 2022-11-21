@@ -13,14 +13,11 @@
 	<body>
 		<header>
 			<h1>Teacher Tools</h1>
-			<p>Caravel Academy</p>
 		</header>
-		<div id="interface">
-			<div id="studentList">
+		<main id="interface">
+			<section id="studentList">
 				<h2>Enter student list</h2>
-				<label for="studentListInput" class="listInputLabel"
-					>Student List Input</label
-				>
+				<label for="studentListInput" class="listInputLabel">Student List Input</label>
 				<textarea
 					class="block"
 					name="Student List Input"
@@ -36,39 +33,22 @@
 					<input type="checkbox" id="toggleDeleteCheck" />
 					<label for="toggleDeleteCheck">Delete List</label>
 				</div>
-			</div>
-			<div id="tools">
+			</section>
+			<section id="tools">
 				<h2>Tools</h2>
 				<div class="tool">
-					<input
-						class="block"
-						type="button"
-						value="Choose Random Student"
-						id="chooseRandomStudentInput"
-					/>
+					<h3>Select a Random Student</h3>
+					<input class="block" type="button" value="Select Student" id="chooseRandomStudentInput" />
 					<p>Student: <span id="randomChoice"></span></p>
 				</div>
 				<div class="tool">
-					<label class="block" for="numberOfTeamsInput">Number of teams</label>
-					<input
-						class="block"
-						type="number"
-						name="Number of teams"
-						id="numberOfTeamsInput"
-					/>
-					<input
-						class="block"
-						type="button"
-						value="Assign random teams"
-						id="assignRandomTeamsInput"
-					/>
-					<div>
-						<br />
-						<h3>Teams:</h3>
-						<p id="teamsParagraph"></p>
-					</div>
+					<h3>Assign Random Groups</h3>
+					<label class="block" for="numberOfTeamsInput">Number of Teams: </label>
+					<input class="block" type="number" value="2" id="numberOfTeamsInput" />
+					<input class="block" type="button" value="Assign Teams" id="assignRandomTeamsInput" />
+					<div id="teamsParagraph"></div>
 				</div>
-			</div>
-		</div>
+			</section>
+		</main>
 	</body>
 </html>
