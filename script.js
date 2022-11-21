@@ -4,6 +4,7 @@ const chooseRandomStudentButton = document.getElementById(
 const saveListButton = document.getElementById("saveListInput");
 const saveListNameInput = document.getElementById("saveListNameInput");
 const savedButtonsContainer = document.getElementById("savedListsDiv");
+const toggleDeleteCheck = document.getElementById("toggleDeleteCheck");
 const clearListButton = document.getElementById("clearListInput");
 const assignRandomTeamsButton = document.getElementById(
 	"assignRandomTeamsInput"
@@ -139,6 +140,14 @@ function getSavedLists() {
 	return data;
 }
 
+function unsaveList(index) {
+	const listName = Object.keys(savedData)[index];
+	delete savedData[listName];
+	toggleDeleteCheck.checked = false;
+	localStorage.setItem(localStorageItemKey, JSON.stringify(savedData));
+	createLoadButtons(savedData);
+}
+
 // generate buttons to load/delete any student lists passed in parameter
 function createLoadButtons(savedLists) {
 	const savedListNames = Object.keys(savedLists);
@@ -150,7 +159,11 @@ function createLoadButtons(savedLists) {
 
 		newButtonElement.innerText = savedListNames[i];
 		newButtonElement.addEventListener("click", () => {
-			studentListTextarea.value = savedListValues[i].join("\n");
+			if (toggleDeleteCheck.checked) {
+				unsaveList(i);
+			} else {
+				studentListTextarea.value = savedListValues[i].join("\n");
+			}
 		});
 
 		fragment.appendChild(newButtonElement);
