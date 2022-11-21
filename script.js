@@ -72,7 +72,7 @@ function assignRandomTeams() {
 	let output = document.createDocumentFragment();
 
 	teams.forEach((team, teamNumber) => {
-		const title = document.createElement("div");
+		const title = document.createElement("h4");
 		const teamList = document.createElement("ul");
 		title.innerText = `Team ${teamNumber + 1}`;
 
