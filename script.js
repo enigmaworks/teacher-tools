@@ -106,7 +106,7 @@ function saveCurrentList() {
 
 	if (listName === "") {
 		const time = new Date();
-		listName = time.toDateString();
+		listName = time.toLocaleString();
 	}
 
 	savedData[listName] = studentListArray;
