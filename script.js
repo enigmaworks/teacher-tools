@@ -11,8 +11,7 @@ const assignRandomTeamsButton = document.getElementById(
 );
 const numberOfTeamsNumber = document.getElementById("numberOfTeamsInput");
 const studentListTextarea = document.getElementById("studentListInput");
-const randomChoiceSpan = document.getElementById("randomChoice");
-const teamsParagraph = document.querySelector("#teamsParagraph");
+const outputDiv = document.getElementById("outputDiv");
 
 const localStorageItemKey = "TeacherToolsSavedLists";
 let savedData = getSavedLists();
@@ -30,7 +29,7 @@ function chooseRandomStudent() {
 
 	studentList.splice(randomInteger, 1);
 	studentListTextarea.value = studentList.join("\n");
-	randomChoiceSpan.textContent = choice;
+	outputDiv.textContent = "Student: " + choice;
 }
 
 assignRandomTeamsButton.addEventListener("click", assignRandomTeams);
@@ -41,7 +40,7 @@ function assignRandomTeams() {
 	const teamSize = Math.floor(studentList.length / numberOfTeams);
 
 	if (!(studentList.length >= numberOfTeams)) {
-		teamsParagraph.innerText =
+		outputDiv.textContent =
 			"There are not enough students to make this many teams!";
 		return;
 	}
@@ -74,19 +73,20 @@ function assignRandomTeams() {
 	teams.forEach((team, teamNumber) => {
 		const title = document.createElement("h4");
 		const teamList = document.createElement("ul");
-		title.innerText = `Team ${teamNumber + 1}`;
+		teamList.classList.add("team");
+		title.textContent = `Team ${teamNumber + 1}`;
 
 		output.appendChild(title);
 		output.appendChild(teamList);
 
 		team.forEach((teamMember) => {
 			const member = document.createElement("li");
-			member.innerHTML = teamMember;
+			member.textContent = teamMember;
 			teamList.appendChild(member);
 		});
 	});
 
-	teamsParagraph.replaceChildren(output);
+	outputDiv.replaceChildren(output);
 }
 
 /* ------------------------------ */
@@ -157,7 +157,7 @@ function createLoadButtons(savedLists) {
 	for (let i = 0; i < savedListNames.length; i++) {
 		const newButtonElement = document.createElement("button");
 
-		newButtonElement.innerText = savedListNames[i];
+		newButtonElement.textContent = savedListNames[i];
 		newButtonElement.addEventListener("click", () => {
 			if (toggleDeleteCheck.checked) {
 				unsaveList(i);

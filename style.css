@@ -43,14 +43,15 @@ h2,h3{
 	display: grid;
 	gap: 0 2rem;
 }
-#teamsParagraph  ul{
+#output ul.team{
+	/* classname added in JS */
 	list-style-type: none;
 	padding: 0;
 	display: flex;
 	gap: 0.25em;
 	flex-wrap: wrap;
 }
-#teamsParagraph  li{
+#output ul.team li{
 	padding: 0.25em 1rem;
 	border: 1px solid #888;
 	min-width: max-content;
