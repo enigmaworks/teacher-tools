@@ -17,6 +17,10 @@ button, input[type="button"] {
 	padding: 0.5em 2.5em;
 	text-align: center;
 	margin: 0.125em;
+	cursor: pointer;
+}
+button:disabled, input[type="button"]:disabled{
+		cursor: not-allowed;
 }
 textarea {
 	resize: vertical;
