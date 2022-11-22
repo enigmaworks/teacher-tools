@@ -25,7 +25,7 @@ textarea {
 	max-height: 70vh;
 	height: 15rem;
 }
-h2{
+* ~ h2{
 	margin-top: 1em;
 }
 #tools{
