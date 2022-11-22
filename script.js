@@ -121,6 +121,7 @@ clearListButton.addEventListener("click", clearCurrentList);
 function clearCurrentList() {
 	studentListTextarea.value = "";
 	saveListNameInput.value = "";
+	outputDiv.textContent = "";
 }
 
 // replace commas with new lines on input
@@ -163,6 +164,7 @@ function createLoadButtons(savedLists) {
 				unsaveList(i);
 			} else {
 				studentListTextarea.value = savedListValues[i].join("\n");
+				saveListNameInput.value = savedListNames[i];
 			}
 		});
 
